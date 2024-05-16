@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Screens/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
 class CreateAccountScreen extends StatelessWidget {
@@ -134,7 +134,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 ],
               ),
               isLoading
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : FilledButton(
                       onPressed: () async {
                         setState(() {
@@ -159,18 +159,19 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                           isLoading = false;
                         });
                         if (response.statusCode != 200) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text(
                                   "Data tersebut sudah ada atau data Anda salah")));
                           return;
                         }
 
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const LoginScreen(fromRegister: true),
-                            ));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) =>
+                        //           const LoginScreen(fromRegister: true),
+                        //     ));
+                        context.go('/login?from_register=true');
                         if (!mounted) Navigator.of(context).pop();
                       },
                       style: FilledButton.styleFrom(
@@ -184,11 +185,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                       style: Theme.of(context).textTheme.labelSmall),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
-                        ),
-                      );
+                      context.go('/login?from_register=false');
                     },
                     style: TextButton.styleFrom(
                       textStyle: Theme.of(context).textTheme.labelSmall,

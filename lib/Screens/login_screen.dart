@@ -2,23 +2,22 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Screens/create_account_screen.dart';
-import 'package:flutter_application_3/Screens/explore_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatelessWidget {
-  final bool? fromRegister;
+  final bool fromRegister;
 
-  const LoginScreen({super.key, this.fromRegister});
+  const LoginScreen({super.key, required this.fromRegister});
 
   @override
   Widget build(BuildContext context) {
-    if (fromRegister != null) {
+    if (fromRegister) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Akun berhasil dibuat, silahkah masuk")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Akun berhasil dibuat, silahkah masuk")));
       });
     }
     return SafeArea(
@@ -45,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                                     .onPrimaryContainer)),
                   ),
                 ),
-                Image(
+                const Image(
                   fit: BoxFit.cover,
                   image: AssetImage("assets/login.png"),
                 ),
@@ -135,7 +134,7 @@ class _LoginFormState extends State<LoginForm> {
                 ],
               ),
               isLoading
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : FilledButton(
                       onPressed: () async {
                         setState(() {
@@ -152,15 +151,17 @@ class _LoginFormState extends State<LoginForm> {
                             }),
                             headers: <String, String>{
                               'Content-Type': 'application/json; charset=UTF-8',
+                              // preflight cors
                             },
                           );
                         } catch (e) {
                           setState(() {
                             isLoading = false;
                           });
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content:
-                                  Text("Terjadi kesalahan, coba lagi nanti")));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      "Terjadi kesalahan, coba lagi nanti")));
                           return;
                         }
 
@@ -168,8 +169,9 @@ class _LoginFormState extends State<LoginForm> {
                           isLoading = false;
                         });
                         if (response.statusCode != 200) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Email atau password salah")));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text("Email atau password salah")));
                           return;
                         }
                         var userId = Cookie.fromSetCookieValue(
@@ -179,12 +181,7 @@ class _LoginFormState extends State<LoginForm> {
                         await storage.write(key: 'user_id', value: userId);
                         var readedUserId = await storage.read(key: 'user_id');
                         if (readedUserId != null) {
-                          print('user_id: $readedUserId');
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ExploreScreen(),
-                              ));
+                          context.go('/explore');
                           if (!mounted) Navigator.of(context).pop();
                         }
                       },
@@ -199,11 +196,7 @@ class _LoginFormState extends State<LoginForm> {
                       style: Theme.of(context).textTheme.labelSmall),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const CreateAccountScreen(),
-                        ),
-                      );
+                      context.go('/create-account');
                     },
                     style: TextButton.styleFrom(
                       textStyle: Theme.of(context).textTheme.labelSmall,

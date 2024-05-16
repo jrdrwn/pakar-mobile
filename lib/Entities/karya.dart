@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final karya = karyaFromJson(jsonString);
-
 import 'dart:convert';
 
 List<Karya> karyaFromJson(String str) =>
