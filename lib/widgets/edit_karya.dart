@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:pakar_mobile/Entities/karya.dart';
+import '../Entities/karya.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:remove_markdown/remove_markdown.dart';
 
@@ -167,7 +167,7 @@ class _EditKaryaState extends State<EditKarya> {
                         categoryController.text = test;
                       });
                     },
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width - 32,
                       child: Text(
                         "Tambah Kategori - $test",
@@ -185,7 +185,7 @@ class _EditKaryaState extends State<EditKarya> {
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width - 32,
                             child: Text(e.name, textAlign: TextAlign.center),
                           ),

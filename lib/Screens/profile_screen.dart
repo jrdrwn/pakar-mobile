@@ -2,11 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:pakar_mobile/Entities/user_profile.dart';
+import '../Entities/user_profile.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
@@ -198,7 +195,7 @@ class _EditProfileState extends State<EditProfile> {
   void initState() {
     super.initState();
 
-    final response = dio
+    dio
         .get('${dotenv.env["API_URL"]}/profile',
             options: Options(
               headers: <String, String>{

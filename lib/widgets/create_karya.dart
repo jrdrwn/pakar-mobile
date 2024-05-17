@@ -154,7 +154,7 @@ class _CreateKaryaState extends State<CreateKarya> {
                       categoryController.text = test;
                     });
                   },
-                  child: Container(
+                  child: SizedBox(
                     width: MediaQuery.of(context).size.width - 32,
                     child: Text(
                       "Tambah Kategori - $test",
@@ -172,7 +172,7 @@ class _CreateKaryaState extends State<CreateKarya> {
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width - 32,
                           child: Text(e.name, textAlign: TextAlign.center),
                         ),

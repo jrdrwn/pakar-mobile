@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pakar_mobile/Screens/create_account_screen.dart';
-import 'package:pakar_mobile/Screens/explore_screen.dart';
-import 'package:pakar_mobile/Screens/introduction_screen.dart';
-import 'package:pakar_mobile/Screens/login_screen.dart';
+import './Screens/create_account_screen.dart';
+import './Screens/explore_screen.dart';
+import './Screens/introduction_screen.dart';
+import './Screens/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';

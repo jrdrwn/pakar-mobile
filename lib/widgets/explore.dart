@@ -1,10 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:pakar_mobile/Entities/category.dart';
-import 'package:pakar_mobile/Entities/karya.dart';
-import 'package:pakar_mobile/Entities/user_profile.dart';
-import 'package:pakar_mobile/widgets/karya_card.dart';
-import 'package:pakar_mobile/widgets/top_category_card.dart';
+import '../Entities/category.dart';
+import '../Entities/karya.dart';
+import '../Entities/user_profile.dart';
+import '../widgets/karya_card.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

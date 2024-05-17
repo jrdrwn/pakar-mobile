@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pakar_mobile/Entities/karya.dart';
-import 'package:pakar_mobile/widgets/detail_karya_pop_up.dart';
+import '../Entities/karya.dart';
+import '../widgets/detail_karya_pop_up.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -38,7 +38,6 @@ class _PopUpMenuKaryaCardState extends State<PopUpMenuKaryaCard> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _checkOwner();
   }
@@ -157,7 +156,7 @@ class _PopUpMenuKaryaCardState extends State<PopUpMenuKaryaCard> {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Scaffold(
                         appBar: AppBar(
-                          title: Text("Detail Karya"),
+                          title: const Text("Detail Karya"),
                         ),
                         body: SingleChildScrollView(
                           child: DetailKaryaPopUp(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pakar_mobile/Entities/karya.dart';
-import 'package:pakar_mobile/widgets/detail_karya_pop_up.dart';
-import 'package:pakar_mobile/widgets/edit_karya.dart';
+import '../Entities/karya.dart';
+import '../widgets/detail_karya_pop_up.dart';
+import '../widgets/edit_karya.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
